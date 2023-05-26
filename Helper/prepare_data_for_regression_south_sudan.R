@@ -29,12 +29,12 @@ d <- d %>% filter(Year >= 2010)
 
 ## Standardize independent variables
 d_t <- d %>%
-  mutate_at(vars(`Malaria risk (Pfpr2-10)`:`Refugee Camps`), 
+  mutate_at(vars(`Malaria risk (Pfpr2-10)`:`Refugee camps`), 
             ~as.numeric(scale(.)))
 
 # Get temporally lagged independent variables
 d_ev_tlag <- d_t %>%  
-  dplyr::select(`Grid ID`, `Year`, `Malaria risk (Pfpr2-10)`:`Refugee Camps`) %>%
+  dplyr::select(`Grid ID`, `Year`, `Malaria risk (Pfpr2-10)`:`Refugee camps`) %>%
   group_by(`Grid ID`) %>%
   mutate_at(vars(-Year, -`Grid ID`), ~lag(., n = 1, order_by = Year))
 
@@ -50,7 +50,7 @@ d_dv_tlag <- d_t %>%
 ## Put data together
 
 d_out <- d_t %>%
-  dplyr::select(-(`Malaria risk (Pfpr2-10)`:`Refugee Camps`)) %>%
+  dplyr::select(-(`Malaria risk (Pfpr2-10)`:`Refugee camps`)) %>%
   inner_join(d_ev_tlag, by = c("Grid ID", "Year")) %>%
   inner_join(d_dv_tlag, by = c("Grid ID", "Year")) %>%
   inner_join(d_splag, by = c("Grid ID", "Year")) %>%
@@ -89,7 +89,7 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 # p2 <- d %>%
 #   group_by(`Grid ID`, Lon, Lat) %>%
 #   filter(Country == "South Sudan") %>%
-#   summarise(`Years with state-based conflicts` = sum(`Conflicts Occurrence (state-based)`)) %>%
+#   summarise(`Years with state-based conflicts` = sum(`Conflicts occurrence (state-based)`)) %>%
 #   ggplot(aes(x = Lon, y = Lat, fill = `Years with state-based conflicts`)) +
 #   geom_tile() +
 #   scale_fill_viridis_c(option = "A") +
@@ -107,7 +107,7 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 # 
 # # Specify DV and EV ====
 # 
-# DV <- "Conflicts Occurrence (state-based)"
+# DV <- "Conflicts occurrence (state-based)"
 # EV <- "Malaria risk (Pfpr2-10)"
 # 
 # 
@@ -147,8 +147,8 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 #     
 #     `%s` + 
 #     
-#     `Prop. Forest Area` +
-#     `Prop. Mountainous area` +
+#     `Prop. forest area` +
+#     `Prop. mountainous area` +
 #     `Precipitation total` +
 #     
 #     Year", 
@@ -162,12 +162,12 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 #     
 #     `%s` + 
 #     
-#     `Prop. Forest Area` +
-#     `Prop. Mountainous area` +
+#     `Prop. forest area` +
+#     `Prop. mountainous area` +
 #     `Precipitation total` +
 #     
 #     `Nightlight (mean)` +
-#     `Prop. Urban Area` +
+#     `Prop. urban area` +
 #     `Population` +
 #     `Area irrigated` +
 # 
@@ -182,12 +182,12 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 #     
 #     `%s` + 
 #     
-#     `Prop. Forest Area` +
-#     `Prop. Mountainous area` +
+#     `Prop. forest area` +
+#     `Prop. mountainous area` +
 #     `Precipitation total` +
 #     
 #     `Nightlight (mean)` +
-#     `Prop. Urban Area` +
+#     `Prop. urban area` +
 #     `Population` +
 #     `Area irrigated` +
 #     
@@ -204,18 +204,18 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 #     
 #     `%s` + 
 #     
-#     `Prop. Forest Area` +
-#     `Prop. Mountainous area` +
+#     `Prop. forest area` +
+#     `Prop. mountainous area` +
 #     `Precipitation total` +
 #     
 #     `Nightlight (mean)` +
-#     `Prop. Urban Area` +
+#     `Prop. urban area` +
 #     `Population` +
 #     `Area irrigated` +
 #     
 #     `Distance to border` + `Distance to capital` +
 #     
-#     `Refugee Camps` +
+#     `Refugee camps` +
 # 
 #     Year", 
 #     DV, DV, DV, EV))
@@ -373,8 +373,8 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 #     
 #     `%s` + 
 #     
-#     `Prop. Forest Area` +
-#     `Prop. Mountainous area` +
+#     `Prop. forest area` +
+#     `Prop. mountainous area` +
 #     `Precipitation total` +
 #     
 #     Year + GridID", 
@@ -388,12 +388,12 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 #     
 #     `%s` + 
 #     
-#     `Prop. Forest Area` +
-#     `Prop. Mountainous area` +
+#     `Prop. forest area` +
+#     `Prop. mountainous area` +
 #     `Precipitation total` +
 #     
 #     `Nightlight (mean)` +
-#     `Prop. Urban Area` +
+#     `Prop. urban area` +
 #     `Population` +
 #     `Area irrigated` +
 # 
@@ -408,12 +408,12 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 #     
 #     `%s` + 
 #     
-#     `Prop. Forest Area` +
-#     `Prop. Mountainous area` +
+#     `Prop. forest area` +
+#     `Prop. mountainous area` +
 #     `Precipitation total` +
 #     
 #     `Nightlight (mean)` +
-#     `Prop. Urban Area` +
+#     `Prop. urban area` +
 #     `Population` +
 #     `Area irrigated` +
 #     
@@ -430,18 +430,18 @@ rm(d_splag, d_dv_tlag, d_ev_tlag, d_t, d_GridID_SouthSudan)
 #     
 #     `%s` + 
 #     
-#     `Prop. Forest Area` +
-#     `Prop. Mountainous area` +
+#     `Prop. forest area` +
+#     `Prop. mountainous area` +
 #     `Precipitation total` +
 #     
 #     `Nightlight (mean)` +
-#     `Prop. Urban Area` +
+#     `Prop. urban area` +
 #     `Population` +
 #     `Area irrigated` +
 #     
 #     `Distance to border` + `Distance to capital` +
 #     
-#     `Refugee Camps` +
+#     `Refugee camps` +
 # 
 #     Year + GridID", 
 #     DV, DV, DV, EV))

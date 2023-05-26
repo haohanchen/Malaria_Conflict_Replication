@@ -40,8 +40,8 @@ formula[[3]] <-
     
     `%s` + 
     
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
     
     Year", 
@@ -55,12 +55,12 @@ formula[[4]] <-
     
     `%s` + 
     
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
     
     `Nightlight (mean)` +
-    `Prop. Urban Area` +
+    `Prop. urban area` +
     `Population` +
     `Area irrigated` +
 
@@ -75,12 +75,12 @@ formula[[5]] <-
     
     `%s` + 
     
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
     
     `Nightlight (mean)` +
-    `Prop. Urban Area` +
+    `Prop. urban area` +
     `Population` +
     `Area irrigated` +
     
@@ -97,18 +97,18 @@ formula[[6]] <-
     
     `%s` + 
     
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
     
     `Nightlight (mean)` +
-    `Prop. Urban Area` +
+    `Prop. urban area` +
     `Population` +
     `Area irrigated` +
     
     `Distance to border` + `Distance to capital` +
     
-    `Refugee Camps` +
+    `Refugee camps` +
 
     Year", 
     DV, DV, DV, EV))
@@ -185,8 +185,8 @@ formula[[3]] <-
 
     `%s` +
 
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
 
     Year + GridID",
@@ -200,12 +200,12 @@ formula[[4]] <-
 
     `%s` +
 
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
 
     `Nightlight (mean)` +
-    `Prop. Urban Area` +
+    `Prop. urban area` +
     `Population` +
     `Area irrigated` +
 
@@ -220,12 +220,12 @@ formula[[5]] <-
 
     `%s` +
 
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
 
     `Nightlight (mean)` +
-    `Prop. Urban Area` +
+    `Prop. urban area` +
     `Population` +
     `Area irrigated` +
 
@@ -242,18 +242,18 @@ formula[[6]] <-
 
     `%s` +
 
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
 
     `Nightlight (mean)` +
-    `Prop. Urban Area` +
+    `Prop. urban area` +
     `Population` +
     `Area irrigated` +
 
     `Distance to border` + `Distance to capital` +
 
-    `Refugee Camps` +
+    `Refugee camps` +
 
     Year + GridID",
     DV, DV, DV, EV))

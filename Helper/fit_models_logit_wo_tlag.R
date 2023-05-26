@@ -37,8 +37,8 @@ formula[[3]] <-
     
     `%s` + 
     
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
     
     Year + Country", 
@@ -51,12 +51,12 @@ formula[[4]] <-
     
     `%s` + 
     
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
     
     `Nightlight (mean)` +
-    `Prop. Urban Area` +
+    `Prop. urban area` +
     `Population` +
     `Area irrigated` +
 
@@ -70,12 +70,12 @@ formula[[5]] <-
     
     `%s` + 
     
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
     
     `Nightlight (mean)` +
-    `Prop. Urban Area` +
+    `Prop. urban area` +
     `Population` +
     `Area irrigated` +
     
@@ -91,18 +91,18 @@ formula[[6]] <-
     
     `%s` + 
     
-    `Prop. Forest Area` +
-    `Prop. Mountainous area` +
+    `Prop. forest area` +
+    `Prop. mountainous area` +
     `Precipitation total` +
     
     `Nightlight (mean)` +
-    `Prop. Urban Area` +
+    `Prop. urban area` +
     `Population` +
     `Area irrigated` +
     
     `Distance to border` + `Distance to capital` +
     
-    `Refugee Camps` +
+    `Refugee camps` +
 
     Year + Country", 
     DV, DV, EV))

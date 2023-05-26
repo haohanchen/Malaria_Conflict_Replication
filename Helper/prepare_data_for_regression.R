@@ -16,12 +16,12 @@ d_splag <- read_rds("Helper/splag.rds") %>%
 
 ## Standardize independent variables
 d_t <- d %>%
-  mutate_at(vars(`Malaria risk (Pfpr2-10)`:`Refugee Camps`), 
+  mutate_at(vars(`Malaria risk (Pfpr2-10)`:`Refugee camps`), 
             ~as.numeric(scale(.)))
 
 # Get temporally lagged independent variables
 d_ev_tlag <- d_t %>%  
-  dplyr::select(`Grid ID`, `Year`, `Malaria risk (Pfpr2-10)`:`Refugee Camps`) %>%
+  dplyr::select(`Grid ID`, `Year`, `Malaria risk (Pfpr2-10)`:`Refugee camps`) %>%
   group_by(`Grid ID`) %>%
   mutate_at(vars(-Year, -`Grid ID`), ~lag(., n = 1, order_by = Year))
 
@@ -38,7 +38,7 @@ d_dv_tlag <- d_t %>%
 ## Put data together
 
 d_out <- d_t %>%
-  dplyr::select(-(`Malaria risk (Pfpr2-10)`:`Refugee Camps`)) %>%
+  dplyr::select(-(`Malaria risk (Pfpr2-10)`:`Refugee camps`)) %>%
   inner_join(d_ev_tlag, by = c("Grid ID", "Year")) %>%
   inner_join(d_dv_tlag, by = c("Grid ID", "Year")) %>%
   inner_join(d_splag, by = c("Grid ID", "Year"))

@@ -20,8 +20,13 @@ theme_set(theme_minimal())
 library(patchwork)
 library(MASS)
 library(sjPlot)
-library(Zelig)
 library(texreg)
+
+# install.packages("https://cran.r-project.org/src/contrib/Archive/Zelig/Zelig_4.2-1.tar.gz", 
+#                  repos=NULL, 
+#                  type="source")
+# install.packages("sandwich")
+library(Zelig)
 ```
 
 ## Load Data
@@ -44,7 +49,7 @@ p1 <- d %>%
 
 p2 <- d %>%
   group_by(`Grid ID`, Lon, Lat) %>%
-  summarise(`Years with state-based conflicts` = sum(`Conflicts Occurrence (state-based)`)) %>%
+  summarise(`Years with state-based conflicts` = sum(`Conflicts occurrence (state-based)`)) %>%
   ggplot(aes(x = Lon, y = Lat, fill = `Years with state-based conflicts`)) +
   geom_tile() +
   scale_fill_viridis_c(option = "A") +
@@ -52,7 +57,7 @@ p2 <- d %>%
   theme(legend.position = "bottom")
 
 p3 <- d %>%
-  mutate(`Conflict (state-based)` = ifelse(`Conflicts Occurrence (state-based)` == 1, "Yes", "No")) %>%
+  mutate(`Conflict (state-based)` = ifelse(`Conflicts occurrence (state-based)` == 1, "Yes", "No")) %>%
   ggplot(aes(x = `Conflict (state-based)`, y = `Malaria risk (Pfpr2-10)`)) +
   geom_boxplot(fill = 'grey') +
   coord_flip()
@@ -82,7 +87,7 @@ Note: As discussed in the article, Table 1 contains highlights of Table A1. It i
 source("Helper/prepare_data_for_regression.R")
 
 # Run regressions
-DV <- "Conflicts Occurrence (state-based)"
+DV <- "Conflicts occurrence (state-based)"
 EV <- "Malaria risk (Pfpr2-10)"
 source("Helper/fit_models_logit.R")
 ```
@@ -112,11 +117,11 @@ htmlreg(models, omit.coef = "Country|Year",
 
 ```{r, fig.width=6, fig.height=6}
 var_select <- c("Malaria risk (Pfpr2-10)", 
-                "Prop. Forest Area", "Prop. Mountainous area", 
+                "Prop. forest area", "Prop. mountainous area", 
                 "Precipitation total", "Area irrigated",
-                "Nightlight (mean)", "Prop. Urban Area", "Population",
+                "Nightlight (mean)", "Prop. urban area", "Population",
                 "Distance to border", "Distance to capital",
-                "Refugee Camps")
+                "Refugee camps")
 
 ci_df_s <- ci_df %>%
   mutate(variable = str_remove_all(variable, "`")) %>%
@@ -125,7 +130,8 @@ ci_df_s <- ci_df %>%
                            levels = rev(var_select)))
   
 p <- ci_df_s %>%
-  ggplot(aes(color = model)) +
+  rename("Model" = "model") %>%
+  ggplot(aes(color = Model)) +
   geom_hline(yintercept=1, linetype = "dashed", color = "red") +
   geom_point(aes(y = `50%`, x = variable), position=position_dodge(width=0.3)) +
   geom_linerange(aes(x = variable, ymin = `2.5%`, ymax = `97.5%`), 
@@ -147,7 +153,7 @@ ggsave("Out_Figures_Tables/Figure_2.png", plot = p, width = 6, height = 6)
 source("Helper/prepare_data_for_regression_south_sudan.R")
 
 # Fit models with South Sudan subset
-DV <- "Conflicts Occurrence (state-based)"
+DV <- "Conflicts occurrence (state-based)"
 EV <- "Malaria risk (Pfpr2-10)"
 source("Helper/fit_models_logit_south_sudan.R")
 ```
@@ -167,7 +173,7 @@ p1 <- d %>%
 p2 <- d %>%
   group_by(`Grid ID`, Lon, Lat) %>%
   filter(Country == "South Sudan") %>%
-  summarise(`Years with state-based conflicts` = sum(`Conflicts Occurrence (state-based)`)) %>%
+  summarise(`Years with state-based conflicts` = sum(`Conflicts occurrence (state-based)`)) %>%
   ggplot(aes(x = Lon, y = Lat, fill = `Years with state-based conflicts`)) +
   geom_tile() +
   scale_fill_viridis_c(option = "A") +
@@ -208,7 +214,7 @@ ggsave("Out_Figures_Tables/Figure_3.png", plot = p_merge, width = 8, height = 6)
 source("Helper/prepare_data_for_regression.R")
 
 # Run regressions
-DV <- "Conflicts Occurrence (state-based)"
+DV <- "Conflicts occurrence (state-based)"
 EV <- "Malaria risk (Pfpr2-10)"
 source("Helper/fit_models_logit_wo_tlag.R")
 ```
@@ -240,7 +246,7 @@ htmlreg(models, omit.coef = "Country|Year",
 source("Helper/prepare_data_for_regression.R")
 
 # Run regressions
-DV <- "Conflicts Occurrence (state-based)"
+DV <- "Conflicts occurrence (state-based)"
 EV <- "Malaria risk (Pfpr2-10)"
 source("Helper/fit_models_relogit.R")
 ```
@@ -273,7 +279,7 @@ htmlreg(models, omit.coef = "Country|Year",
 source("Helper/prepare_data_for_regression.R")
 
 # Run regressions
-DV <- "Conflicts Occurrence (state-based)"
+DV <- "Conflicts occurrence (state-based)"
 EV <- "Malaria risk (Pf Incidence)"
 source("Helper/fit_models_logit.R")
 ```
@@ -305,7 +311,7 @@ htmlreg(models, omit.coef = "Country|Year",
 source("Helper/prepare_data_for_regression.R")
 
 # Run regressions
-DV <- "Conflicts Occurrence (Battles, ACLED)"
+DV <- "Conflicts occurrence (Battles, ACLED)"
 EV <- "Malaria risk (Pfpr2-10)"
 source("Helper/fit_models_logit.R")
 ```
@@ -337,7 +343,7 @@ htmlreg(models, omit.coef = "Country|Year",
 source("Helper/prepare_data_for_regression_south_sudan.R")
 
 # Fit models with South Sudan subset
-DV <- "Conflicts Occurrence (state-based)"
+DV <- "Conflicts occurrence (state-based)"
 EV <- "Malaria risk (Pfpr2-10)"
 source("Helper/fit_models_logit_south_sudan.R")
 ```
@@ -369,7 +375,7 @@ htmlreg(models, omit.coef = "Country|Year",
 source("Helper/prepare_data_for_regression_south_sudan.R")
 
 # Fit models with South Sudan subset
-DV <- "Conflicts Occurrence (state-based)"
+DV <- "Conflicts occurrence (state-based)"
 EV <- "Malaria risk (Pfpr2-10)"
 source("Helper/fit_models_logit_south_sudan.R")
 ```
